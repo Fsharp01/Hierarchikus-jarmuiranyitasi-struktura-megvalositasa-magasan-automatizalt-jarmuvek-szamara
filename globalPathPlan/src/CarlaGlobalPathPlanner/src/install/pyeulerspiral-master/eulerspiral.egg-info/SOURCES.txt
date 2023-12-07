@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+eulerspiral/__init__.py
+eulerspiral/eulerspiral.py
+eulerspiral.egg-info/PKG-INFO
+eulerspiral.egg-info/SOURCES.txt
+eulerspiral.egg-info/dependency_links.txt
+eulerspiral.egg-info/top_level.txt

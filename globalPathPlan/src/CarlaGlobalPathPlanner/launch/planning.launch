@@ -1,0 +1,47 @@
+<!-- Global Planner launch configuration -->
+<launch>
+    <!-- Arguments set by terminal -->
+    <arg name='map_name' default='smartcity'/>
+    <arg name='distance_between_waypoints' default='0.5'/>
+    <arg name='visualization' default='false'/>
+
+
+    <node pkg="rviz" type="rviz" name="rviz" output="screen" args="-d $(find CarlaGlobalPathPlanner)/launch/opendrive.rviz"/>
+    <!-- Parameters of the layer -->
+    <group ns="/t4ac/mapping">
+        <param name="map_path" type="string" value="/home/losi/globalPathPlan/src/CarlaGlobalPathPlanner/src/import/"/>
+        <param name="map_name" type="string" value="$(arg map_name)" />
+        <param name="distance_between_waypoints" type="double" value="$(arg distance_between_waypoints)" />
+    </group>
+
+    <!-- Nodes launched -->
+    <node name="global_planner_node" pkg="CarlaGlobalPathPlanner" type="lane_waypoint_planner.py"/>
+
+    <group if="$(eval visualization == true)">
+        <node name="route_visualizator_node" pkg="t4ac_global_planner_ros" type="route_visualizator.py"/>
+    </group>
+    <!-- Opendrive visualizer-->
+     <rosparam file="$(find opendrive_visualize)/config/params.yaml" />
+    <node pkg="opendrive_visualize" type="opendrive_visualize_node" name="opendrive_visualize" output="screen" />
+    
+    <!-- Frenet planner-->
+    <node name="frenet_planner_node" pkg="CarlaGlobalPathPlanner" type="frenet_planner.py"/>
+    
+    <!-- Pure Pursuit Controller-->
+    <node name="pure_pursuit_control_node" pkg="CarlaGlobalPathPlanner" type="stanley.py"/>
+    
+
+     <!-- Modell Publisher-
+    <node name="modell_publisher" pkg="CarlaGlobalPathPlanner" type="Model_publisher.py"/>
+    <node name="pure_pursuit_control_node" pkg="CarlaGlobalPathPlanner" type="pure_pursuit_control.py"/>
+-->
+    
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find CarlaGlobalPathPlanner)/src/import/lexus450.urdf.xacro'"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="50.0"/>
+    </node>
+
+
+</launch>
+

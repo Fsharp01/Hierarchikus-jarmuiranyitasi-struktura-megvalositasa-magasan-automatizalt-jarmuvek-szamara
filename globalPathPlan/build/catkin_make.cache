@@ -1,0 +1,2 @@
+CarlaGlobalPathPlanner:opendrive_visualize
+-DCATKIN_DEVEL_PREFIX=/home/losi/globalPathPlan/devel -DCMAKE_INSTALL_PREFIX=/home/losi/globalPathPlan/install -G Unix Makefiles

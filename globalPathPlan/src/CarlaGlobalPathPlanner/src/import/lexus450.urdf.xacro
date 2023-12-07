@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<robot name="lexus" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <material name="black">
+                <color rgba="0.2 0.2 0.2 1"/>
+        </material>
+
+        
+        <link name="base_link">
+                <visual>
+                        <origin xyz="-0.6 0 0.30" rpy="0 0 1.57" /> 
+                        <geometry>
+                                <mesh scale="0.001 0.001 0.001" filename="package://CarlaGlobalPathPlanner/src/import/LexusRX.obj" />
+                        </geometry>
+                        <material name="black"/>
+                </visual>
+        </link>
+        
+        <!-- Front axle -->
+        <link name="front_axle">
+                
+        </link>
+        
+        <joint name="ront_wheel" type="fixed">
+                <origin xyz="1.395 0 0" rpy="0 0 0"/>
+                <parent link="base_link"/>
+                <child link="front_axle"/>
+        </joint>
+        
+        <!-- Rear axle -->
+        <link name="rear_axle">
+                
+        </link>
+        
+        <joint name="rear_wheel" type="fixed">
+                <origin xyz="-1.395 0 0" rpy="0 0 0"/>
+                <parent link="base_link"/>
+                <child link="rear_axle"/>
+        </joint>
+        
+        <!-- Front bump -->
+        <link name="front_bump">
+                
+        </link>
+        
+        <joint name="front_bump" type="fixed">
+                <origin xyz="2.475 0.0 0.0" rpy="0 0 0"/>
+                <parent link="base_link"/>
+                <child link="front_bump"/>
+        </joint>
+        
+        <!-- Rear bump -->
+        <link name="rear_bump">
+                
+        </link>
+        
+        <joint name="rear_bump" type="fixed">
+                <origin xyz="-2.415 0.0 0.0" rpy="0 0 0"/>
+                <parent link="base_link"/>
+                <child link="rear_bump"/>
+        </joint>
+        
+        <!-- Roof frame base -->
+        <link name="roof_frame">
+                
+        </link>
+        
+        <joint name="roof_frame" type="fixed">
+                <origin xyz="-1.42 0 1.350" rpy="0 0 0"/>
+                <parent link="base_link"/>
+                <child link="roof_frame"/>
+        </joint>
+
+</robot>
