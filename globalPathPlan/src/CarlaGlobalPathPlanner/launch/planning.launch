@@ -27,9 +27,9 @@
     <!-- Frenet planner-->
     <node name="frenet_planner_node" pkg="CarlaGlobalPathPlanner" type="frenet_planner.py"/>
     
-    <!-- Pure Pursuit Controller-->
+    <!-- Pure Pursuit Controller
     <node name="pure_pursuit_control_node" pkg="CarlaGlobalPathPlanner" type="stanley.py"/>
-    
+    -->
 
      <!-- Modell Publisher-
     <node name="modell_publisher" pkg="CarlaGlobalPathPlanner" type="Model_publisher.py"/>
